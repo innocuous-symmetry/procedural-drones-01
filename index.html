@@ -6,92 +6,121 @@
 
     <body>
         <header>
-            <h1>Procedural Drone, No. 1</h1>
+            <h1>Procedural Drones, No. 1</h1>
             <h2>Design and engineering by Mikayla Dobson</h2>
 
-            <button class="show-on-start" id="info-button">Show more info...</button>
+            <div class="show-on-start" id="navbar-tools">
+                <button id="info-button">Show more info...</button>
+                <!-- <button id="how-to-use">How to use</button> -->
+            </div>
 
             <div class="hide-on-start more-info">
-                <p>Musical widget designed using Tone.js and the Web Audio API.</p>
+                <p>Music-focused widget designed using Tone.js and the Web Audio API.</p>
                 <p>Sliders control output parameters of four independent oscillators modulated by four independent low frequency oscillators (LFOs).</p>
                 <p>JavaScript passes your inputs to the browser and procedurally constructs harmonies based on developer-defined logic based on tenets of music theory.</p>
             </div>
-            <button class-name="destroy-on-start" id="start-tone">Click here to begin.</button>
         </header>
 
-        <main>            
-            <div class="show-on-start">
-                <div>
-                    <button id="synth-button">Test Audio</button>
-                    <button id="transport-start">Start Transport</button>
+        <button id="start-tone">Click here to begin.</button>
+
+        <main class="show-on-start">            
+            <div class="visuals">
+                <div class="voice" id="soprano"></div>
+                <div class="voice" id="alto"></div>
+                <div class="voice" id="tenor"></div>
+                <div class="voice" id="bass"></div>
+            </div>
+
+            <div id="visuals-border"></div>
+
+            <div class="control-row button-row">
+                <button id="synth-button">Test Audio</button>
+                <button id="transport-start">Start Transport</button>
+            </div>
+
+            <form class="audio-controls control-row">
+                <!-- soprano -->
+                <div class="controls">
+                    <h3>Soprano</h3>
+                    <label for="soprano-vol">
+                        <p>Soprano Volume:&nbsp;</p>
+                        <p id="soprano-vol-target">-</p>
+                    </label>
+                    <input id="soprano-vol" type="range" min="5" max="20">
+                    <label for="sop-lfo">
+                        <p>Soprano LFO:&nbsp;</p>
+                        <p id="sop-lfo-target">-</p>
+                    </label>
+                    <input id="sop-lfo" type="range" min="1" max="20" step="0.2">
                 </div>
 
-                <div class="visuals">
-                    <div class="voice" id="soprano"></div>
-                    <div class="voice" id="alto"></div>
-                    <div class="voice" id="tenor"></div>
-                    <div class="voice" id="bass"></div>
+                <!-- alto -->
+                <div class="controls">
+                    <h3>Alto</h3>
+                    <label for="alto-vol">
+                        <p>Alto Volume:&nbsp;</p>
+                        <p id="alto-vol-target">-</p>
+                    </label>
+                    <input id="alto-vol" type="range" min="5" max="20">
+                    <label for="alto-lfo">
+                        <p>Alto LFO:&nbsp;</p>
+                        <p id="alto-lfo-target">-</p>
+                    </label>
+                    <input id="alto-lfo" type="range" min="1" max="20" step="0.2">
                 </div>
 
-                <form class="audio-controls">
-                    <div class="controls">
-                        <h3>Soprano</h3>
-                        <label for="soprano-vol">
-                            <p>Soprano Volume:</p>
-                            <p id="soprano-vol-target">-</p>
-                        </label>
-                        <input id="soprano-vol" type="range" min="5" max="20">
-                        <label for="sop-lfo">
-                            <p>Soprano LFO (Hz.)</p>
-                            <p id="sop-lfo-target">-</p>
-                        </label>
-                        <input id="sop-lfo" type="range" min="1" max="20" step="0.2">
-                    </div>
-                    <div class="controls">
-                        <h3>Alto</h3>
-                        <label for="alto-vol">
-                            <p>Alto Volume:</p>
-                            <p id="alto-vol-target">-</p>
-                        </label>
-                        <input id="alto-vol" type="range" min="5" max="20">
-                        <label for="alto-lfo">
-                            <p>Alto LFO (Hz).</p>
-                            <p id="alto-lfo-target">-</p>
-                        </label>
-                        <input id="alto-lfo" type="range" min="1" max="20" step="0.2">
-                    </div>
-                    <div class="controls">
-                        <h3>Tenor</h3>
-                        <label for="ten-vol">
-                            <p>Tenor Volume:</p>
-                            <p id="ten-vol-target">-</p>
-                        </label>
-                        <input id="ten-vol" type="range" min="5" max="20">
-                        <label for="ten-lfo">
-                            <p>Tenor LFO (Hz.)</p>
-                            <p id="ten-lfo-target">-</p>
-                        </label>
-                        <input id="ten-lfo" type="range" min="1" max="20" step="0.2">
-                    </div>
-                    <div class="controls">
-                        <h3>Bass</h3>
-                        <label for="bass-vol">
-                            <p>Bass Volume:</p>
-                            <p id="bass-vol-target">-</p>
-                        </label>
-                        <input id="bass-vol" type="range" min="5" max="20">
-                        <label for="bass-lfo">
-                            <p>Bass LFO (Hz.)/p>
-                            <p id="bass-lfo-target">-</p>
-                        </label>
-                        <input id="bass-lfo" type="range" min="1" max="20" step="0.2">
-                    </div>
-                </form>
+                <!-- tenor -->
+                <div class="controls">
+                    <h3>Tenor</h3>
+                    <label for="ten-vol">
+                        <p>Tenor Volume:&nbsp;</p>
+                        <p id="ten-vol-target">-</p>
+                    </label>
+                    <input id="ten-vol" type="range" min="5" max="20">
+                    <label for="ten-lfo">
+                        <p>Tenor LFO:&nbsp;</p>
+                        <p id="ten-lfo-target">-</p>
+                    </label>
+                    <input id="ten-lfo" type="range" min="1" max="20" step="0.2">
+                </div>
+
+                <!-- bass -->
+                <div class="controls">
+                    <h3>Bass</h3>
+                    <label for="bass-vol">
+                        <p>Bass Volume:&nbsp;</p>
+                        <p id="bass-vol-target">-</p>
+                    </label>
+                    <input id="bass-vol" type="range" min="5" max="20">
+                    <label for="bass-lfo">
+                        <p>Bass LFO:&nbsp;</p>
+                        <p id="bass-lfo-target">-</p>
+                    </label>
+                    <input id="bass-lfo" type="range" min="1" max="20" step="0.2">
+                </div>
+            </form>
+
+            <form class="control-row master-params">
+                <div class="controls">
+                    <h3>Master</h3>
+                    <label for="probability">Probability</label>
+                    <input id="probability" type="range" min="0" max="1" step="0.05" placeholder="1">
+                </div>
+            </form>
+
+            <div class="control-row aux-functions button-row">
+                <button id="mute-all">Mute all oscillators</button>
+                <button id="reset-lfos">Reset LFO values to default</button>
+                <button id="rand-chord">Full random chord</button>
             </div>
         </main>
 
-        <script type="module" src="./js/app.js"></script>
+        <!-- Tone.js library -->
+        <script type="module" src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+        <!-- internal scripts -->
         <script type="module" src="./js/inputHandling.js"></script>
-        <script src="https://unpkg.com/tone/build/Tone.js"></script>
+        <script type="module" src="./js/toneGeneration.js"></script>
+        <script type="module" src="./js/styleUtils.js"></script>
+        <script type="module" src="app.js"></script>
     </body>
 </html>

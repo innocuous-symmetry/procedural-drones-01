@@ -1,3 +1,5 @@
+import { audioTest, fullRandomChord } from '../app.js';
+
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');
 const sopranoVolTarget = document.getElementById('soprano-vol-target');
@@ -26,7 +28,7 @@ sopranoVol.oninput = (e) => {
 }
 
 sopLFO.oninput = (e) => {
-    sopLFOTarget.innerHTML = e.target.value;
+    sopLFOTarget.innerHTML = ` ${e.target.value} Hz.`;
 }
 
 // A
@@ -35,7 +37,7 @@ altoVol.oninput = (e) => {
 }
 
 altoLFO.oninput = (e) => {
-    altoLFOTarget.innerHTML = e.target.value;
+    altoLFOTarget.innerHTML = ` ${e.target.value} Hz.`;
 }
 
 // T
@@ -44,7 +46,7 @@ tenVol.oninput = (e) => {
 }
 
 tenLFO.oninput = (e) => {
-    tenLFOTarget.innerHTML = e.target.value;
+    tenLFOTarget.innerHTML = ` ${e.target.value} Hz.`;
 }
 
 // B
@@ -53,5 +55,12 @@ bassVol.oninput = (e) => {
 }
 
 bassLFO.oninput = (e) => {
-    bassLFOTarget.innerHTML = e.target.value;
+    bassLFOTarget.innerHTML = ` ${e.target.value.toString()} Hz.`;
 }
+
+// audio-adjacent input handling
+const synthButton = document.getElementById('synth-button');
+synthButton.onclick = audioTest;
+
+const randChord = document.getElementById('rand-chord');
+randChord.onclick = fullRandomChord;
