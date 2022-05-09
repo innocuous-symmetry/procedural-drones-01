@@ -1,3 +1,27 @@
+* {
+    margin: 0;
+}
+
+header {
+    display: block;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    height: 6rem;
+    top: 0;
+    padding: 2rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    position: relative;
+    top: 8rem;
+    
+}
+
 #synth-button {
     display: none;
 }

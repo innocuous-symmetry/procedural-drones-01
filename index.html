@@ -5,11 +5,37 @@
     </head>
 
     <body>
-        <h1>Tone</h1>
-        <button id="start-tone">START?</button>
-        <button id="synth-button">SYNTH???</button>
+        <header>
+            <h1>Procedural Drone, No. 1</h1>
+            <h2>Design and engineering by Mikayla Dobson</h2>
+        </header>
+
+        <main>            
+            <button id="start-tone">Audio On</button>
+
+            <div class="audio-on">
+                <button id="synth-button">Test Audio</button>
+                <button id="transport-start">Start Transport</button>
+
+                <div class="visuals">
+                    <div class="voice" id="soprano"></div>
+                    <div class="voice" id="alto"></div>
+                    <div class="voice" id="tenor"></div>
+                    <div class="voice" id="bass"></div>
+                </div>
+
+                <form class="audio-controls">
+                    <label for="soprano-vol">
+                        <p>Soprano Volume:</p>
+                        <p id="soprano-vol-target">-</p>
+                    </label>
+                    <input id="soprano-vol" type="range" min="5" max="20">
+                </form>
+            </div>
+        </main>
 
         <script type="module" src="app.js"></script>
+        <script type="module" src="inputHandling.js"></script>
         <script src="https://unpkg.com/tone/build/Tone.js"></script>
     </body>
 </html>
