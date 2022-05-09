@@ -1,13 +1,21 @@
+/* universal styles */
 * {
     margin: 0;
+    font-family: sans-serif;
 }
 
+/* javascript utilities */
+.show-on-start {
+    display: none;
+}
+
+/* document styles */
 header {
     display: block;
     position: fixed;
     width: 100%;
     text-align: center;
-    height: 6rem;
+    min-height: 12rem;
     top: 0;
     padding: 2rem;
 }
@@ -15,11 +23,22 @@ header {
 main {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     align-items: center;
     position: relative;
-    top: 8rem;
-    
+    top: 15rem;   
+}
+
+.audio-controls {
+    display: flex;
+    width: 80%;
+}
+
+.controls {
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px solid black;
+    align-items: center;
 }
 
 #synth-button {

@@ -2,12 +2,45 @@
 const startButton = document.getElementById("start-tone");
 const synthButton = document.getElementById("synth-button");
 
+const showStart = document.getElementsByClassName('show-on-start');
+const hideStart = document.getElementsByClassName('hide-on-start');
+
+const showMore = document.getElementById('info-button');
+const moreInfo = document.getElementsByClassName('more-info');
+
 let initialized = false;
+
+// style utilities
+showMore.onclick = () => {
+    if (showMore.innerHTML === 'Show more info...') {
+        for (let element of moreInfo) {
+            element.style.display = 'block';
+            document.querySelector('#info-button').innerHTML = "Hide info";
+        }
+    } else if (showMore.innerHTML === 'Hide info') {
+        for (let element of moreInfo) {
+            element.style.display = 'none';
+            document.querySelector('#info-button').innerHTML = "Show more info...";
+        }
+    }
+}
+
+
 
 // application start, show synth play button
 startButton.onclick = async () => {
     await Tone.start()
-    .then(synthButton.style.display = "block");
+    .then(() => {
+        synthButton.style.display = "block";
+        startButton.style.display = "none";
+
+        for (let element of showStart) {
+            element.style.display = "flex";
+        }
+        for (let element of hideStart) {
+            element.style.display = "none";
+        }
+    });
 }
 
 // initialize four voices
