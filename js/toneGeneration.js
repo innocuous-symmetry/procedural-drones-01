@@ -9,17 +9,26 @@ export const bassTones = ["C2", "D2", "E2", "F2", "G2", "A2", "Bb2", "B2", "C3",
 // this is focused on base-12, something computers understand quite well
 const musicalPitches = ['A', "Bb", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
 
-export const evaluateHarmony = (pitches) => {
-    let sorted = [];
+export const extractPitchset = (pitches) => {
+    // 1) determine pitch set from given array of pitches
+    let pitchset = [];
+
     for (let each of pitches) {
-        let matches = each.match(/(\d+)/);
-        if (matches) {
-            sorted.push([each, matches]);
-        }
+        // filters numbers from above tones
+        const str = each;
+        const regex = /[0-9]/g;
+        const withoutNums = str.replace(regex, '');
+        const pitchNumber = musicalPitches.indexOf(withoutNums);
+
+        // ... so that they may be mapped onto numbers corresponding to the chromatic scale
+        pitchset.push(pitchNumber);
     }
 
-    sorted = sorted.sort((a,b) => a[1] < b[1]);
-    console.log(sorted);
+    // these are sorted from lowest to highest index (something like an interval vector)
+    pitchset.sort((a,b) => a < b);
+    console.log(pitchset);
+
+    // 
 }
 
 // no tritones

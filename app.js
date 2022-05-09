@@ -1,4 +1,7 @@
-import { sopranoTones, altoTones, tenorTones, bassTones, evaluateHarmony } from "./js/toneGeneration.js";
+import {
+    sopranoTones, altoTones, tenorTones, bassTones,
+    extractPitchset, 
+} from "./js/toneGeneration.js";
 
 const pitchsets = [sopranoTones, altoTones, tenorTones, bassTones];
 
@@ -47,7 +50,7 @@ export const fullRandomChord = () => {
     }
 
     soundChord(pitches);
-    evaluateHarmony(pitches);
+    extractPitchset(pitches);
 }
 
 // set up transport
