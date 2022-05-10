@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import * as Tone from 'tone';
 export const startButton = document.getElementById("start-tone");
 export const synthButton = document.getElementById("synth-button");
 export const showStart = document.getElementsByClassName('show-on-start');

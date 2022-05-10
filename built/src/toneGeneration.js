@@ -9,7 +9,7 @@ export const bassTones = ["C2", "D2", "E2", "F2", "G2", "A2", "Bb2", "B2", "C3",
 const musicalPitches = ['A', "Bb", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
 export const extractPitchset = (pitches) => {
     // 1) determine pitch set from given array of pitches
-    let pitchset = [];
+    let pitchset;
     for (let each of pitches) {
         // filters numbers from above tones
         const str = each;
@@ -20,7 +20,7 @@ export const extractPitchset = (pitches) => {
         pitchset.push(pitchNumber);
     }
     // these are sorted from lowest to highest index (something like an interval vector)
-    pitchset.sort((a, b) => a < b);
+    pitchset.sort((a, b) => a - b);
     console.log(pitchset);
     return pitchset;
 };

@@ -1,3 +1,4 @@
+import * as Tone from 'tone';
 import {
     sopranoTones, altoTones, tenorTones, bassTones,
     extractPitchset, 

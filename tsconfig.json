@@ -2,7 +2,8 @@
     "compilerOptions": {
       "outDir": "./built",
       "allowJs": true,
-      "target": "es2016"
+      "target": "es2016",
+      "moduleResolution": "node"
     },
     "include": ["./src/**/*"]
 }

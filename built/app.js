@@ -1,3 +1,4 @@
+import * as Tone from 'tone';
 import { sopranoTones, altoTones, tenorTones, bassTones, extractPitchset, } from "./src/toneGeneration.js";
 const pitchsets = [sopranoTones, altoTones, tenorTones, bassTones];
 // initialize four synth voices
