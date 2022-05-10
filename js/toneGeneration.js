@@ -28,7 +28,7 @@ export const extractPitchset = (pitches) => {
     pitchset.sort((a,b) => a < b);
     console.log(pitchset);
 
-    // 
+    return pitchset;
 }
 
 // no tritones
