@@ -25,31 +25,6 @@ export const soundChord = (pitches: string[]) => {
     bass.triggerAttackRelease(b, "8n");
 }
 
-// initial test: generate a single, random chord
-export const fullRandomChord = () => {
-    let pitches: string[] = [];
-    for (let voice of pitchsets) {
-        // finds a random index, excluding any which may already exist in the array
-        let index: number;
-        
-        do {
-            index = Math.floor(Math.random() * 100) % voice.length;
-        } while (pitches.includes(voice[index]));
-
-        pitches.push(voice[index]);
-        console.log(voice[index]);
-    }
-
-    for (let i = 0; i < pitches.length; i++) {
-        if (pitches[i] === pitches[i+1]) {
-            console.log("CAUGHT");
-        }
-    }
-
-    soundChord(pitches);
-    extractPitchset(pitches);
-}
-
 // set up transport
 const transportStart = document.getElementById('transport-start');
 

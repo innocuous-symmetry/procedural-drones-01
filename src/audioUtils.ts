@@ -9,10 +9,11 @@ export const fullRandomChord = () => {
         let index: number;
         
         do {
+            if (!pitches) pitches = [];
             index = Math.floor(Math.random() * 100) % voice.length;
-        } while (pitches.includes(voice[index]));
+        } while (pitches.includes(voice[index]) ?? false);
 
-        pitches.push(voice[index]);
+        pitches ? pitches.push(voice[index]) : pitches = [voice[index]];
         console.log(voice[index]);
     }
 

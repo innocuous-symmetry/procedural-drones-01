@@ -1,5 +1,3 @@
-import { findVector, IntervalDefNames, musicalPitches } from './harmonyUtil';
-
 // we start with a selection of pitches that generally work okay together
 const sopranoTones = ["B5", "A5", "G5", "F#5", "F5", "E5", "D5", "C5", "B4", "Bb4", "A4", "G4", "F#4", "F4", "E4"];
 const altoTones = ["E5", "D5", "C5", "B4", "Bb4", "A4", "G4", "F#4", "F4", "E4", "D4", "C4", "B3", "Bb3", "A3", "G3"];
@@ -17,16 +15,8 @@ export const pitchsets: string[][] = [sopranoTones, altoTones, tenorTones, bassT
  * no minor 2nds or major 7ths
 */
 
-export const evaluateVector = (vector: number[]): boolean => {
-    let result: boolean;
+export const evaluateVector = (vector: number[]): boolean => ((vector.includes(1) || vector.includes(6)));
 
-    for (let x of vector) {
-        if (x === 1 || x === 6) {
-            result = false;
-            return;
-        } else {
-            result = true;
-        }
-    }
-    return result;
+export const rejectDissonance = (vector: number[]) => {
+    
 }

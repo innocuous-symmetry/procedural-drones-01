@@ -1,4 +1,5 @@
-import { audioTest, fullRandomChord } from '../app.js';
+import { audioTest } from '../app.js';
+import { fullRandomChord } from './audioUtils.js';
 
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');
