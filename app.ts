@@ -60,8 +60,6 @@ let slowClock = 0;
 
 const transportStart = document.getElementById('transport-start');
 
-let transport;
-
 const loop = new Tone.Loop((time) => {
     audioTest();
 }, "8n").start(0);
