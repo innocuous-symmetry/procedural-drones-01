@@ -11,9 +11,9 @@ const intervals = {
     // all intervals beyond this invert to one of the previous intervals
 };
 // helper functions
-const transposePitches = (pitchNames, interval) => {
+const transposePitches = (pitches, interval) => {
     let transposed = [];
-    pitchNames.forEach(pitch => transposed.push((pitch + interval) % 12));
+    pitches.forEach(pitch => transposed.push((pitch + interval) % 12));
     return transposed;
 };
 const findVector = (pitches) => {

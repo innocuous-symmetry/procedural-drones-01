@@ -24,38 +24,46 @@ const bassLFOTarget = document.getElementById('bass-lfo-target');
 // logic for displaying values on HTML labels
 // S
 sopranoVol.oninput = (e) => {
-    sopranoVolTarget.innerHTML = e.target.value;
+    const target = e.target as HTMLInputElement;
+    sopranoVolTarget.innerHTML = target.value;
 }
 
 sopLFO.oninput = (e) => {
-    sopLFOTarget.innerHTML = ` ${e.target.value} Hz.`;
+    const target = e.target as HTMLInputElement;
+    sopLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // A
 altoVol.oninput = (e) => {
-    altoVolTarget.innerHTML = e.target.value;
+    const target = e.target as HTMLInputElement;
+    altoVolTarget.innerHTML = target.value;
 }
 
 altoLFO.oninput = (e) => {
-    altoLFOTarget.innerHTML = ` ${e.target.value} Hz.`;
+    const target = e.target as HTMLInputElement;
+    altoLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // T
 tenVol.oninput = (e) => {
-    tenVolTarget.innerHTML = e.target.value;
+    const target = e.target as HTMLInputElement;
+    tenVolTarget.innerHTML = target.value;
 }
 
 tenLFO.oninput = (e) => {
-    tenLFOTarget.innerHTML = ` ${e.target.value} Hz.`;
+    const target = e.target as HTMLInputElement;
+    tenLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // B
 bassVol.oninput = (e) => {
-    bassVolTarget.innerHTML = e.target.value;
+    const target = e.target as HTMLInputElement;
+    bassVolTarget.innerHTML = target.value;
 }
 
 bassLFO.oninput = (e) => {
-    bassLFOTarget.innerHTML = ` ${e.target.value.toString()} Hz.`;
+    const target = e.target as HTMLInputElement;
+    bassLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // audio-adjacent input handling
