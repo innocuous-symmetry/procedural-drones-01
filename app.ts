@@ -4,7 +4,7 @@ import {
     extractPitchset, 
 } from "./src/toneGeneration.js";
 
-const pitchsets = [sopranoTones, altoTones, tenorTones, bassTones];
+const pitchsets: string[][] = [sopranoTones, altoTones, tenorTones, bassTones];
 
 // initialize four synth voices
 const soprano = new Tone.Synth().toDestination();
@@ -21,7 +21,7 @@ export const audioTest = () => {
 }
 
 // allows a chord to be generated with input from another function
-export const soundChord = (pitches) => {
+export const soundChord = (pitches: string[]) => {
     const [s,a,t,b] = pitches;
     soprano.triggerAttackRelease(s, "8n");
     alto.triggerAttackRelease(a, "8n");
@@ -31,10 +31,10 @@ export const soundChord = (pitches) => {
 
 // initial test: generate a single, random chord
 export const fullRandomChord = () => {
-    let pitches = [];
+    let pitches: string[];
     for (let voice of pitchsets) {
         // finds a random index, excluding any which may already exist in the array
-        let index;
+        let index: number;
         
         do {
             index = Math.floor(Math.random() * 100) % voice.length;
@@ -55,9 +55,6 @@ export const fullRandomChord = () => {
 }
 
 // set up transport
-let clock = 0;
-let slowClock = 0;
-
 const transportStart = document.getElementById('transport-start');
 
 const loop = new Tone.Loop((time) => {
@@ -69,4 +66,3 @@ loop.probability = 0.8;
 transportStart.onclick = () => {
     Tone.Transport.start();
 }
-

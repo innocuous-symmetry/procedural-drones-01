@@ -1,7 +1,11 @@
 import { extractPitchset } from "./toneGeneration.js";
 
 // interval definitions:
-const intervals = {
+export interface IntervalDef {
+    number: string
+}
+
+export const IntervalDefNames = {
     0: "unison",
     1: "minor second",
     2: "major second",
@@ -9,7 +13,7 @@ const intervals = {
     4: "major third",
     5: "perfect fourth",
     6: "tritone"
-    // all intervals beyond this invert to one of the previous intervals
+    // ... all intervals beyond this invert to one of the previous intervals
 }
 
 // helper functions
@@ -48,17 +52,40 @@ const findVector = (pitches: number[]) => {
     return intervalClasses;
 }
 
+export const labelIntervals = (vector: number[]): [number, IntervalDef][] => {
+    let result: [number, IntervalDef][] = [];
+
+    for (let x of vector) {
+        result.push([x, IntervalDefNames[x]]);
+    }
+
+    return result;
+}
+
 // analysis
 let dMajor = extractPitchset(["D", "F#", "A", "D"]);
 const eMajor = transposePitches(dMajor, 2);
 console.log(eMajor);
 console.log('');
 
-let dMajVector = findVector(dMajor);
-console.log(dMajVector);
+/**
+ * sample uses of these functions detailed below:
+ * 
+ * @var dMajVector = @function findVector(dMajor);
+ * @param dMajor number[] ( result of earlier call to @function extractPitchset )
+ * ... @returns [0,3,4,5]
+ * this indicates this pitchset contains a unison, a minor third, a major third,
+ * and a perfect fourth (or a corresponding inversion)
+ * 
+ * @var complexVector = @function findVector([0,3,4,7,8,11]);
+ * @returns [1,2,3,4,5]
+ * 
+ * @var splitThird = @function findVector([0,3,4,7]);
+ * @returns [1,3,4]
+ * 
+ * @function labelIntervals
+ * @param vector = number[] corresponding to sorted vector
+ * references @interface IntervalDef to select from @constant IntervalDefNames
+ * @returns an array of duples, each containing a number and an entry from IntervalDef
+ */
 
-let complexVector = findVector([0,3,4,7,8,11]);
-console.log(complexVector);
-
-let splitThird = findVector([0,3,4,7]);
-console.log(splitThird);
