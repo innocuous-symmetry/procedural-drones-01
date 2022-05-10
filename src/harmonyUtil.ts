@@ -13,20 +13,20 @@ const intervals = {
 }
 
 // helper functions
-const transposePitches = (pitchNames, interval) => {
+const transposePitches = (pitches: number[], interval: number) => {
     let transposed = [];
-    pitchNames.forEach(pitch => transposed.push((pitch + interval) % 12));
+    pitches.forEach(pitch => transposed.push((pitch + interval) % 12));
     return transposed;
 }
 
-const findVector = (pitches) => {
+const findVector = (pitches: number[]) => {
     let sorted = pitches.sort((x,y) => x - y);
     // sorted = sorted.filter((num, idx) => {
     //     return sorted.indexOf(num) === idx;
     // });
 
     // finds each interval and logs it as a duple
-    let intervalClasses = [];
+    let intervalClasses: number[] = [];
     for (let i = 0; i < sorted.length; i++) {
         let j = i+1;
 
@@ -36,7 +36,7 @@ const findVector = (pitches) => {
         }
 
         do {
-            let thing = (sorted[j] - sorted[i]) % 6
+            let thing: number = (sorted[j] - sorted[i]) % 6
             if (!(intervalClasses.includes(thing))) {
                 intervalClasses.push(thing);
             }
