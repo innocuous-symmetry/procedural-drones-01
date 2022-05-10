@@ -1,10 +1,6 @@
 import * as Tone from 'tone';
-import {
-    sopranoTones, altoTones, tenorTones, bassTones,
-    extractPitchset, 
-} from "./src/toneGeneration.js";
-
-const pitchsets: string[][] = [sopranoTones, altoTones, tenorTones, bassTones];
+import { pitchsets } from "./src/toneGeneration.js";
+import { extractPitchset } from './src/harmonyUtil.js';
 
 // initialize four synth voices
 const soprano = new Tone.Synth().toDestination();
@@ -31,7 +27,7 @@ export const soundChord = (pitches: string[]) => {
 
 // initial test: generate a single, random chord
 export const fullRandomChord = () => {
-    let pitches: string[];
+    let pitches: string[] = [];
     for (let voice of pitchsets) {
         // finds a random index, excluding any which may already exist in the array
         let index: number;

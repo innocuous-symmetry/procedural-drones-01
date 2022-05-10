@@ -1,5 +1,3 @@
-import { extractPitchset } from "./toneGeneration.js";
-
 // interval definitions:
 export interface IntervalDef {
     number: string
@@ -16,6 +14,8 @@ export const IntervalDefNames = {
     // ... all intervals beyond this invert to one of the previous intervals
 }
 
+export const musicalPitches = ['A', "Bb", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+
 // helper functions
 const transposePitches = (pitches: number[], interval: number) => {
     let transposed = [];
@@ -23,7 +23,27 @@ const transposePitches = (pitches: number[], interval: number) => {
     return transposed;
 }
 
-const findVector = (pitches: number[]) => {
+export const extractPitchset = (pitches: string[]) => {
+    // 1) determine pitch set from given array of pitches
+    let pitchset: number[] = [];
+
+    for (let each of pitches) {
+        // filters numbers from above tones
+        const str = each;
+        const regex = /[0-9]/g;
+        const withoutNums = str.replace(regex, '');
+        const pitchNumber = musicalPitches.indexOf(withoutNums);
+
+        // ... so that they may be mapped onto numbers corresponding to the chromatic scale
+        pitchset.push(pitchNumber);
+    }
+
+    // these are sorted from lowest to highest index (something like an interval vector)
+    pitchset.sort((a,b) => a - b);
+    return pitchset;
+}
+
+export const findVector = (pitches: number[]) => {
     let sorted = pitches.sort((x,y) => x - y);
     // sorted = sorted.filter((num, idx) => {
     //     return sorted.indexOf(num) === idx;
@@ -88,4 +108,3 @@ console.log('');
  * references @interface IntervalDef to select from @constant IntervalDefNames
  * @returns an array of duples, each containing a number and an entry from IntervalDef
  */
-
