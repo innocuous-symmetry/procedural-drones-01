@@ -1,3 +1,14 @@
+// pitchset definitions, grouped into matrix before export
+const sopranoTones = ["B5", "A5", "G5", "F#5", "F5", "E5", "D5", "C5", "B4", "Bb4", "A4", "G4", "F#4", "F4", "E4"];
+const altoTones = ["E5", "D5", "C5", "B4", "Bb4", "A4", "G4", "F#4", "F4", "E4", "D4", "C4", "B3", "Bb3", "A3", "G3"];
+const tenorTones = ["G4", "F#4", "F4", "E4", "D4", "C4", "B3", "Bb3", "A3", "G3", "F3", "E3", "D3", "C3"];
+const bassTones = ["C2", "D2", "E2", "F2", "G2", "A2", "Bb2", "B2", "C3", "D3", "E3", "F3", "G3"];
+
+export const pitchsets: string[][] = [sopranoTones, altoTones, tenorTones, bassTones];
+
+// mapping of musical pitches, refer to this by index, maps onto base 12
+export const musicalPitches = ['A', "Bb", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+
 // interval definitions:
 export interface IntervalDef {
     number: string
@@ -14,62 +25,11 @@ export const IntervalDefNames = {
     // ... all intervals beyond this invert to one of the previous intervals
 }
 
-export const musicalPitches = ['A', "Bb", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
-
 // helper functions
 const transposePitches = (pitches: number[], interval: number) => {
     let transposed = [];
     pitches.forEach(pitch => transposed.push((pitch + interval) % 12));
     return transposed;
-}
-
-export const extractPitchset = (pitches: string[]) => {
-    // 1) determine pitch set from given array of pitches
-    let pitchset: number[] = [];
-
-    for (let each of pitches) {
-        // filters numbers from above tones
-        const str = each;
-        const regex = /[0-9]/g;
-        const withoutNums = str.replace(regex, '');
-        const pitchNumber = musicalPitches.indexOf(withoutNums);
-
-        // ... so that they may be mapped onto numbers corresponding to the chromatic scale
-        pitchset.push(pitchNumber);
-    }
-
-    // these are sorted from lowest to highest index (something like an interval vector)
-    pitchset.sort((a,b) => a - b);
-    return pitchset;
-}
-
-export const findVector = (pitches: number[]) => {
-    let sorted = pitches.sort((x,y) => x - y);
-    // sorted = sorted.filter((num, idx) => {
-    //     return sorted.indexOf(num) === idx;
-    // });
-
-    // finds each interval and logs it as a duple
-    let intervalClasses: number[] = [];
-    for (let i = 0; i < sorted.length; i++) {
-        let j = i+1;
-
-        // does not allow out of range values in the proceeding loop
-        if (j >= sorted.length) {
-            break;
-        }
-
-        do {
-            let thing: number = (sorted[j] - sorted[i]) % 6
-            if (!(intervalClasses.includes(thing))) {
-                intervalClasses.push(thing);
-            }
-            j++;
-        } while (j < sorted.length);
-    }
-
-    intervalClasses = intervalClasses.sort((x,y) => x-y);
-    return intervalClasses;
 }
 
 export const labelIntervals = (vector: number[]): [number, IntervalDef][] => {
@@ -81,12 +41,6 @@ export const labelIntervals = (vector: number[]): [number, IntervalDef][] => {
 
     return result;
 }
-
-// analysis
-let dMajor = extractPitchset(["D", "F#", "A", "D"]);
-const eMajor = transposePitches(dMajor, 2);
-console.log(eMajor);
-console.log('');
 
 /**
  * sample uses of these functions detailed below:

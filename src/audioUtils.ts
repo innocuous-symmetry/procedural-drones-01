@@ -1,6 +1,9 @@
-import { evaluateVector, pitchsets } from "./toneGeneration";
-import { extractPitchset, findVector } from "./harmonyUtil";
-import { soundChord } from '../app';
+import { soundChord } from '../app.js';
+import { pitchsets } from "./harmonyUtil.js";
+
+import { evaluateVector } from "./vector_logic/evaluateVector.js";
+import { findVector } from "./vector_logic/findVector.js";
+import { extractPitchset } from "./vector_logic/extractPitchset.js";
 
 export const fullRandomChord = () => {
     let pitches: string[];

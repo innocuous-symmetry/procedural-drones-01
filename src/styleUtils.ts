@@ -1,4 +1,4 @@
-import * as Tone from "tone";
+import * as Tone from 'tone';
 
 export const startButton = document.getElementById("start-tone");
 export const synthButton = document.getElementById("synth-button");

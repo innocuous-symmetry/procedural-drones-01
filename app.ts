@@ -1,6 +1,4 @@
 import * as Tone from 'tone';
-import { pitchsets } from "./src/toneGeneration.js";
-import { extractPitchset } from './src/harmonyUtil.js';
 
 // initialize four synth voices
 const soprano = new Tone.Synth().toDestination();
