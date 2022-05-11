@@ -1,8 +1,5 @@
 export const findVector = (pitches: number[]) => {
     let sorted = pitches.sort((x,y) => x - y);
-    // sorted = sorted.filter((num, idx) => {
-    //     return sorted.indexOf(num) === idx;
-    // });
 
     // finds each interval and logs it as a duple
     let intervalClasses: number[] = [];
@@ -24,5 +21,6 @@ export const findVector = (pitches: number[]) => {
     }
 
     intervalClasses = intervalClasses.sort((x,y) => x-y);
+
     return intervalClasses;
 }

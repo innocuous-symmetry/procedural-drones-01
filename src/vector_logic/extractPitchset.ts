@@ -1,6 +1,6 @@
 import { musicalPitches } from "../harmonyUtil.js";
 
-export const extractPitchset = (pitches: string[]) => {
+export const extractPitchset = (pitches: string[]): number[] => {
     // 1) determine pitch set from given array of pitches
     let pitchset: number[] = [];
 

@@ -32,6 +32,7 @@ const transposePitches = (pitches: number[], interval: number) => {
     return transposed;
 }
 
+// quality-of-life tool for debugging
 export const labelIntervals = (vector: number[]): [number, IntervalDef][] => {
     let result: [number, IntervalDef][] = [];
 
@@ -42,23 +43,28 @@ export const labelIntervals = (vector: number[]): [number, IntervalDef][] => {
     return result;
 }
 
-/**
- * sample uses of these functions detailed below:
- * 
- * @var dMajVector = @function findVector(dMajor);
- * @param dMajor number[] ( result of earlier call to @function extractPitchset )
- * ... @returns [0,3,4,5]
- * this indicates this pitchset contains a unison, a minor third, a major third,
- * and a perfect fourth (or a corresponding inversion)
- * 
- * @var complexVector = @function findVector([0,3,4,7,8,11]);
- * @returns [1,2,3,4,5]
- * 
- * @var splitThird = @function findVector([0,3,4,7]);
- * @returns [1,3,4]
- * 
- * @function labelIntervals
- * @param vector = number[] corresponding to sorted vector
- * references @interface IntervalDef to select from @constant IntervalDefNames
- * @returns an array of duples, each containing a number and an entry from IntervalDef
- */
+// iterates through each voice's pitchset, and selects a random pitch from each
+export const getRandomPitches = (): string[] => {
+    let pitches: string[];
+    for (let voice of pitchsets) {
+        // will store a random index
+        let index: number;
+
+        const regex = /[0-9]/g;
+        
+        // repeat this iteration until it returns a number not already included in the list
+        do {
+            if (!pitches) pitches = [];
+
+            index = Math.floor(Math.random() * 100) % voice.length;
+
+            console.log(`${voice[0]}: ${index}`);
+        } while (pitches.includes(voice[index]));
+
+        // if pitches is not already initialized to an empty array, do so; otherwise, push the received value
+        pitches ? pitches.push(voice[index]) : pitches = [voice[index]];
+        console.log(voice[index]);
+    }
+
+    return pitches;
+}
