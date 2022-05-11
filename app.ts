@@ -1,9 +1,11 @@
-import * as Tone from 'tone';
-
 // initialize four synth voices
+// @ts-expect-error: namespace, Tone, for all of the following "expect-error calls"
 const soprano = new Tone.Synth().toDestination();
+// @ts-expect-error
 const alto = new Tone.Synth().toDestination();
+// @ts-expect-error
 const tenor = new Tone.Synth().toDestination();
+// @ts-expect-error
 const bass = new Tone.Synth().toDestination();
 
 // test function for audio is armed
@@ -26,6 +28,7 @@ export const soundChord = (pitches: string[]) => {
 // set up transport
 const transportStart = document.getElementById('transport-start');
 
+// @ts-expect-error
 const loop = new Tone.Loop((time) => {
     audioTest();
 }, "8n").start(0);
@@ -33,5 +36,6 @@ const loop = new Tone.Loop((time) => {
 loop.probability = 0.8;
     
 transportStart.onclick = () => {
+    // @ts-expect-error
     Tone.Transport.start();
 }

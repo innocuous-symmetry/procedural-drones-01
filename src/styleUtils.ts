@@ -1,5 +1,3 @@
-import * as Tone from 'tone';
-
 export const startButton = document.getElementById("start-tone");
 export const synthButton = document.getElementById("synth-button");
 
@@ -26,6 +24,7 @@ showMore.onclick = () => {
 }
 
 startButton.onclick = async () => {
+    // @ts-expect-error - namespace again, failed import from Tone
     await Tone.start()
     .then(() => {
         appReady = true;

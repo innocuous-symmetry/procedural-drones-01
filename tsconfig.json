@@ -2,9 +2,14 @@
     "compilerOptions": {
       "outDir": "./built",
       "allowJs": true,
-      "target": "es2017",
-      "module": "CommonJS",
+      "target": "es2018",
+      "module": "ESNext",
       "moduleResolution": "node",
     },
-    "include": ["./src/**/*", "./app"]
+    "include": [
+      "./src/**/*", "./app"
+    ],
+    "exclude": [
+      "/_tone"
+    ]
 }
