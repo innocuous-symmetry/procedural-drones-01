@@ -1,6 +1,3 @@
-import { pitchsets } from "./src/harmonyUtil.js";
-import { extractPitchset } from "./src/vector_logic/extractPitchset.js";
-
 // initialize four synth voices
 const soprano = new Tone.Synth().toDestination();
 const alto = new Tone.Synth().toDestination();

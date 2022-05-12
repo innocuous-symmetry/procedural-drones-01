@@ -1,4 +1,4 @@
-import { getRandomPitches } from "../harmonyUtil.js";
+import { getRandomPitches } from './getRandomPitches.js';
 import { extractPitchset } from "./extractPitchset.js";
 import { findVector } from "./findVector.js";
 
