@@ -1,5 +1,6 @@
-import { pitchsets } from "../harmonyUtil.js";
+import { pitchsets, musicalPitches } from "../harmonyUtil.js";
 import { extractPitchName } from "./extractPitchName.js";
+import { getRandomIndex } from "./getRandomPitches.js";
 
 // an additional method based on the structure of getRandomPitches,
 // but taking some principles of music theory into account.
@@ -14,7 +15,7 @@ export const getProceduralPitches = (prevPitches) => {
         
         while (pitches.length <= pitchsets.indexOf(voice)) {
             // the first section of this while loop is more free.
-            index = Math.floor(Math.random() * 100) % voice.length;
+            index = getRandomIndex(voice);
             formattedPitch = extractPitchName(voice[index]);
 
             // this initial condition will apply only to the bass voice,
@@ -23,7 +24,26 @@ export const getProceduralPitches = (prevPitches) => {
             } else {
                 // now we need some repeating logic for the remaining four voices
                 while (pitches.length !== (pitchsets.indexOf(voice) + 1)) {
-                    pitches.push(pitchsets.indexOf(voice));
+                    index = getRandomIndex(voice);
+                    pitches.push(voice[index]);
+
+                    
+                    for (let i = 0; i < pitches.length; i++) {
+                        let numVals = [];
+
+                        for (let j = i; j < i + 2; j++) {
+                            console.log(pitches[j]);
+                            let extracted = extractPitchName(pitches[j]);
+                            numVals.push(musicalPitches.indexOf(extracted) + 1);
+                        }
+
+                        let difference = Math.abs(numVals.reduce((x,y) => x - y));
+                        if (difference === 1 || difference === 6) {
+                            pitches.pop();
+                        } else {
+                            continue;
+                        }
+                    }
                 }
             }
         }
