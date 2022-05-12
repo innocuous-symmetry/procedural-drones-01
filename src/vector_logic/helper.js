@@ -2,47 +2,57 @@ import { pitchsets, musicalPitches } from '../harmonyUtil.js';
 import { extractPitchName } from './extractPitchName.js';
 import { getRandomIndex } from './getRandomPitches.js';
 
+let callCount = 0;
+
 const iteratePitchsets = () => {
-    let pitches = [];
+    callCount++;
+
+    if (callCount >= 10) {
+        return ["E3", "C4", "D4", "G4"];
+    }
+
+    const bass = pitchsets[0];
+    let bassNote = bass[getRandomIndex(bass)];
+
+    let pitches = [bassNote];
     let result = [];
 
-    const tryNewPitch = () => {
-        result = [];
+    for (let i = 1; i < 4; i++) {
+        let voice = pitchsets[i];
+        let idx = getRandomIndex(voice);
+        let pitch = voice[idx];
+        pitches.push(pitch);
+    }
 
-        for (let voice of pitchsets) {
-            let idx = getRandomIndex(voice);
-            let pitchNum = musicalPitches.indexOf(extractPitchName(voice[idx]));
+    let pitchNames = pitches.map(x => extractPitchName(x));
+    let pitchNums = pitchNames.map(x => musicalPitches.indexOf(x));
     
-            pitches.push([pitchNum, voice[idx]]);
-        }
-
-        console.log(pitches);
-
-        for (let i = 0; i < pitches.length; i++) {
-            for (let j = i; j < pitches.length; j++) {
-                let difference = Math.abs(pitches[i][0] - pitches[j][0]);
-                if (difference === 1 || difference === 6) {
-                    result.push(["BAD", [i, j], pitches[i], pitches[j]]);
-                } else {
-                    result.push(["GOOD", [i, j], pitches[i], pitches[j]]);
-                }
-            }
-        }
-        console.log(result);
-    }
-
-    tryNewPitch();
-
-    for (let entry in result) {
-        if (entry[0] === "BAD") {
-            iteratePitchsets();
-        }
-    }
-
     console.log(pitches);
+    console.log(pitchNames);
+    console.log(pitchNums);
+
+    for (let i = 0; i < pitchNums.length; i++) {
+        console.log("___FIRST NEST___")
+        for (let j = i; j < pitchNums.length; j++) {
+            let interval = Math.abs(pitchNums[i] - pitchNums[j]);
+            if (interval > 6) {
+                console.log('wrap');
+                interval = 12 - interval;
+            }
+
+            let isDissonant = ((interval === 1) || (interval === 6));
+            console.log(`pitches: ${[pitches[i], pitches[j]]} interval: ${interval}, dissonant: ${isDissonant}, positions: [${i}, ${j}]: ${[pitchNums[i], pitchNums[j]]}`);
+            
+            if (isDissonant) iteratePitchsets();
+        }
+    }
+    console.log('');
+
+    return pitches;
 }
 
-iteratePitchsets();
+let final = iteratePitchsets();
+console.log(final);
 
 
 
