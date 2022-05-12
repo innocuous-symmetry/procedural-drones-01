@@ -1,11 +1,7 @@
 // initialize four synth voices
-// @ts-expect-error: namespace, Tone, for all of the following "expect-error calls"
 const soprano = new Tone.Synth().toDestination();
-// @ts-expect-error
 const alto = new Tone.Synth().toDestination();
-// @ts-expect-error
 const tenor = new Tone.Synth().toDestination();
-// @ts-expect-error
 const bass = new Tone.Synth().toDestination();
 
 // test function for audio is armed

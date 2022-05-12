@@ -1,9 +1,5 @@
 import { audioTest } from '../app.js';
-<<<<<<< HEAD:src/inputHandling.ts
-import { evaluatedChord, fullRandomChord } from './audioUtils.js';
-=======
 import { fullRandomChord, evaluatedChord } from './audioUtil.js';
->>>>>>> backtrack:src/inputHandling.js
 
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');
@@ -29,45 +25,45 @@ const bassLFOTarget = document.getElementById('bass-lfo-target');
 // logic for displaying values on HTML labels
 // S
 sopranoVol.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     sopranoVolTarget.innerHTML = target.value;
 }
 
 sopLFO.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     sopLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // A
 altoVol.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     altoVolTarget.innerHTML = target.value;
 }
 
 altoLFO.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     altoLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // T
 tenVol.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     tenVolTarget.innerHTML = target.value;
 }
 
 tenLFO.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     tenLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 
 // B
 bassVol.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     bassVolTarget.innerHTML = target.value;
 }
 
 bassLFO.oninput = (e) => {
-    const target = e.target as HTMLInputElement;
+    const target = e.target;
     bassLFOTarget.innerHTML = ` ${target.value} Hz.`;
 }
 

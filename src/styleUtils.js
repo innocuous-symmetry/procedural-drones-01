@@ -1,11 +1,11 @@
 export const startButton = document.getElementById("start-tone");
 export const synthButton = document.getElementById("synth-button");
 
-export const showStart = document.getElementsByClassName('show-on-start') as HTMLCollectionOf<HTMLElement>;
-export const hideStart = document.getElementsByClassName('hide-on-start') as HTMLCollectionOf<HTMLElement>;
+export const showStart = document.getElementsByClassName('show-on-start');
+export const hideStart = document.getElementsByClassName('hide-on-start');
 
 export const showMore = document.getElementById('info-button');
-export const moreInfo = document.getElementsByClassName('more-info') as HTMLCollectionOf<HTMLElement>;
+export const moreInfo = document.getElementsByClassName('more-info');
 
 export let appReady = false;
 
