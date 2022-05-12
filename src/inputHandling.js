@@ -1,5 +1,9 @@
 import { audioTest } from '../app.js';
+<<<<<<< HEAD:src/inputHandling.ts
 import { evaluatedChord, fullRandomChord } from './audioUtils.js';
+=======
+import { fullRandomChord, evaluatedChord } from './audioUtil.js';
+>>>>>>> backtrack:src/inputHandling.js
 
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');

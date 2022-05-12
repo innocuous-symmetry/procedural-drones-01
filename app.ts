@@ -17,8 +17,9 @@ export const audioTest = () => {
 }
 
 // allows a chord to be generated with input from another function
-export const soundChord = (pitches: string[]) => {
-    const [s,a,t,b] = pitches;
+// pitchNames: array of strings
+export const soundChord = (pitchNames) => {
+    const [s,a,t,b] = pitchNames;
     soprano.triggerAttackRelease(s, "8n");
     alto.triggerAttackRelease(a, "8n");
     tenor.triggerAttackRelease(t, "8n");
@@ -28,7 +29,6 @@ export const soundChord = (pitches: string[]) => {
 // set up transport
 const transportStart = document.getElementById('transport-start');
 
-// @ts-expect-error
 const loop = new Tone.Loop((time) => {
     audioTest();
 }, "8n").start(0);
