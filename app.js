@@ -1,9 +1,5 @@
-import {
-    sopranoTones, altoTones, tenorTones, bassTones,
-    extractPitchset, 
-} from "./js/toneGeneration.js";
-
-const pitchsets = [sopranoTones, altoTones, tenorTones, bassTones];
+import { pitchsets } from "./src/harmonyUtil.js";
+import { extractPitchset } from "./src/vector_logic/extractPitchset.js";
 
 // initialize four synth voices
 const soprano = new Tone.Synth().toDestination();
@@ -20,8 +16,9 @@ export const audioTest = () => {
 }
 
 // allows a chord to be generated with input from another function
-export const soundChord = (pitches) => {
-    const [s,a,t,b] = pitches;
+// pitchNames: array of strings
+export const soundChord = (pitchNames) => {
+    const [s,a,t,b] = pitchNames;
     soprano.triggerAttackRelease(s, "8n");
     alto.triggerAttackRelease(a, "8n");
     tenor.triggerAttackRelease(t, "8n");
@@ -54,12 +51,7 @@ export const fullRandomChord = () => {
 }
 
 // set up transport
-let clock = 0;
-let slowClock = 0;
-
 const transportStart = document.getElementById('transport-start');
-
-let transport;
 
 const loop = new Tone.Loop((time) => {
     audioTest();
@@ -70,4 +62,3 @@ loop.probability = 0.8;
 transportStart.onclick = () => {
     Tone.Transport.start();
 }
-
