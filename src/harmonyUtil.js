@@ -31,16 +31,28 @@ const transposePitches = (pitchNames, interval) => {
 export const getRandomPitches = () => {
     // pitches stored in Tone.js string format
     let pitches = [];
+    let formattedPitches = [];
+    
     for (let voice of pitchsets) {
         // finds a random index, excluding any which may already exist in the array
         let index;
-        
-        do {
-            index = Math.floor(Math.random() * 100) % voice.length;
-        } while (pitches.includes(voice[index]));
+        const regex = /[A-Gb#]/g;
+        let pitch;
+        let formattedPitch;
 
-        pitches.push(voice[index]);
+        // loops until four distinct chord members are received
+        while (formattedPitches.length < 4) {
+            index = Math.floor(Math.random() * 100) % voice.length;
+            pitch = voice[index];
+            formattedPitch = pitch.match(regex).join('');
+            if (!formattedPitches.includes(formattedPitch)) {
+                formattedPitches.push(formattedPitch);
+                pitches.push(pitch);
+            }
+        }
     }
 
+    console.log(formattedPitches);
+    console.log(pitches);
     return pitches;
 }
