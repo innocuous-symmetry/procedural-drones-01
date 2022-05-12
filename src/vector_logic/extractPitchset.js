@@ -1,4 +1,5 @@
 import { musicalPitches } from '../harmonyUtil.js';
+import { extractPitchName } from './extractPitchName.js';
 
 // converts pitches in Tone.js string format to base-12 number pitchsets
 export const extractPitchset = (pitches) => {
@@ -8,8 +9,7 @@ export const extractPitchset = (pitches) => {
     for (let each of pitches) {
         // filters numbers from above tones
         const str = each;
-        const regex = /[0-9]/g;
-        const withoutNums = str.replace(regex, '');
+        const withoutNums = extractPitchName(str);
         const pitchNumber = musicalPitches.indexOf(withoutNums);
 
         // ... so that they may be mapped onto numbers corresponding to the chromatic scale

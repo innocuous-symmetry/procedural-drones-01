@@ -1,5 +1,5 @@
 import { audioTest } from '../app.js';
-import { fullRandomChord } from './audioUtil.js';
+import { fullRandomChord, evaluatedChord } from './audioUtil.js';
 
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');
@@ -65,3 +65,6 @@ synthButton.onclick = audioTest;
 
 const randChord = document.getElementById('rand-chord');
 randChord.onclick = fullRandomChord;
+
+const evalChord = document.getElementById('eval-chord');
+evalChord.onclick = evaluatedChord;

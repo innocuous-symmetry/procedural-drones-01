@@ -10,3 +10,7 @@ export const fullRandomChord = () => {
 
     return pitchset;
 }
+
+export const evaluatedChord = () => {
+    return fullRandomChord();
+}
