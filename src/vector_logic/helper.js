@@ -31,24 +31,35 @@ const iteratePitchsets = () => {
     console.log(pitchNames);
     console.log(pitchNums);
 
+    let isDissonant = false;
+
     for (let i = 0; i < pitchNums.length; i++) {
-        console.log("___FIRST NEST___")
         for (let j = i; j < pitchNums.length; j++) {
             let interval = Math.abs(pitchNums[i] - pitchNums[j]);
             if (interval > 6) {
-                console.log('wrap');
                 interval = 12 - interval;
             }
 
-            let isDissonant = ((interval === 1) || (interval === 6));
-            console.log(`pitches: ${[pitches[i], pitches[j]]} interval: ${interval}, dissonant: ${isDissonant}, positions: [${i}, ${j}]: ${[pitchNums[i], pitchNums[j]]}`);
+            let intervalIsDissonant = ((interval === 1) || (interval === 6));
+            // console.log(`pitches: ${[pitches[i], pitches[j]]} interval: ${interval}, dissonant: ${isDissonant}, positions: [${i}, ${j}]: ${[pitchNums[i], pitchNums[j]]}`);
             
-            if (isDissonant) iteratePitchsets();
+            if (!intervalIsDissonant) {
+                continue;
+            } else {
+                isDissonant = true;
+            }
         }
     }
-    console.log('');
-
-    return pitches;
+    
+    if (isDissonant) {
+        console.log('bad');
+        let newValues = iteratePitchsets();
+        return newValues;
+    } else {
+        console.log('good');
+        console.log(pitches);
+        return pitches;
+    }
 }
 
 let final = iteratePitchsets();
