@@ -1,4 +1,4 @@
-import { getRandomPitches } from './getRandomPitches.js';
+import { getRandomPitches } from '../pitch_generation/getRandomPitches.js';
 import { extractPitchset } from "./extractPitchset.js";
 import { findVector } from "./findVector.js";
 

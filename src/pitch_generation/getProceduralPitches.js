@@ -1,5 +1,5 @@
 import { pitchsets, musicalPitches } from "../harmonyUtil.js";
-import { extractPitchName } from "./extractPitchName.js";
+import { extractPitchName } from "../vector_logic/extractPitchName.js";
 import { getRandomIndex } from "./getRandomPitches.js";
 
 // an additional method based on the structure of getRandomPitches,

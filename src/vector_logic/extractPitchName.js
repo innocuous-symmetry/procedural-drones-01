@@ -1,2 +1,1 @@
-const regex = /[A-Gb#]/g;
-export const extractPitchName = (tonePitchName) => tonePitchName.match(regex).join('');
+export const extractPitchName = (tonePitchName) => tonePitchName.match(/[A-Gb#]/g).join('');

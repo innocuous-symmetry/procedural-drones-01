@@ -13,9 +13,13 @@ export const findVector = (pitches) => {
         }
 
         do {
-            let thing = (sorted[j] - sorted[i]) % 6
-            if (!(intervalClasses.includes(thing))) {
-                intervalClasses.push(thing);
+            let interval = (sorted[j] - sorted[i]);
+            if (interval > 6) {
+                interval = 12 - interval;
+            }
+            
+            if (!(intervalClasses.includes(interval))) {
+                intervalClasses.push(interval);
             }
             j++;
         } while (j < sorted.length);
