@@ -1,5 +1,5 @@
 import { pitchsets } from "../harmonyUtil.js";
-import { extractPitchName } from "../vector_logic/extractPitchName.js";
+import { extractPitchName } from "../data_conversions/extractPitchName.js";
 
 // helper function for assigning a random index for a given voice's pitchset
 export const getRandomIndex = (voice) => Math.floor(Math.random() * 100) % voice.length;
