@@ -1,7 +1,6 @@
 import { pitchsets, musicalPitches } from '../harmonyUtil.js';
 import { extractPitchName } from './extractPitchName.js';
 import { getRandomIndex } from '../pitch_generation/getRandomPitches.js';
-import { findVector } from './findVector.js';
 
 let callCount = 0;
 
