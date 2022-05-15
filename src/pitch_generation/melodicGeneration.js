@@ -83,5 +83,10 @@ export const melodicGeneration = (prevPitches) => {
         isMelodic = false;
     }
 
-    return isMelodic;
+    if (!isMelodic) {
+        let newMelodicPitches = melodicGeneration(prevPitches);
+        return newMelodicPitches;
+    } else {
+        return newPitches;
+    }
 }
