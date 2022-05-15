@@ -2,11 +2,13 @@ import { pitchsets, musicalPitches } from "../harmonyUtil.js";
 import { extractPitchName } from "../data_conversions/extractPitchName.js";
 import { getRandomIndex } from "./getRandomPitches.js";
 import { melodicGeneration } from './melodicGeneration.js';
+import { sonorityList } from "./sonorityList.js";
 
-// iterator to prevent stack overflow
+// variables to handle recursive logic
 let callCount = 0;
 
 export const getProceduralPitches = () => {
+    let result;
     callCount++;
 
     if (callCount >= 10) {
@@ -53,15 +55,17 @@ export const getProceduralPitches = () => {
     // if a dissonance is found, the function is called recursively, and its value returned
     if (isDissonant) {
         let newPitches = getProceduralPitches();
-        return newPitches;
+        result = newPitches;
     // otherwise, the original value itself is returned
     } else {
         console.log(`call count: ${callCount}`);
         callCount = 0;
-        console.log(pitches);
 
-        let { isMelodic, nextPitches } = melodicGeneration(pitches);
-
-        if (nextPitches) return nextPitches;
+        let newValue = melodicGeneration(pitches);
+        sonorityList(pitches, newValue);
+        
+        result = newValue;
     }
+
+    if (result) return result;
 }

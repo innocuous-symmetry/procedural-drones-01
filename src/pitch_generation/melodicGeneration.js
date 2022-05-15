@@ -6,7 +6,10 @@ import { musicalPitches, pitchsets } from '../harmonyUtil.js';
 // reads the pitch of the previous sonority and determines appropriate melodic movement for the soprano
 // returns a boolean which triggers a recursive call if the interval received is out of expected values
 
+let callCount = 0;
 export const melodicGeneration = (prevPitches) => {
+    let result;
+
     // direction: boolean; true refers to ascending motion; false refers to descending motion
     let direction;
     let isMelodic = true;
@@ -84,9 +87,12 @@ export const melodicGeneration = (prevPitches) => {
     }
 
     if (!isMelodic) {
-        let newMelodicPitches = melodicGeneration(prevPitches);
-        return newMelodicPitches;
+        callCount++;
+        result = melodicGeneration(prevPitches);
     } else {
-        return newPitches;
+        callCount = 0;
+        result = newPitches;
     }
+
+    return result;
 }

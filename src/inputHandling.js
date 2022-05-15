@@ -1,5 +1,6 @@
 import { audioTest } from '../app.js';
 import { fullRandomChord, evaluatedChord } from './audioUtil.js';
+import { sonorities, getNextSonority } from './pitch_generation/sonorityList.js';
 
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');
@@ -76,3 +77,6 @@ randChord.onclick = fullRandomChord;
 
 const evalChord = document.getElementById('eval-chord');
 evalChord.onclick = evaluatedChord;
+
+const nextChord = document.getElementById('next-chord');
+nextChord.onclick = getNextSonority;

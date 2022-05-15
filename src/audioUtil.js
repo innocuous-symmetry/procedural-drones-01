@@ -14,7 +14,7 @@ export const fullRandomChord = () => {
 
 export const evaluatedChord = (prevPitches = ["C3", "G3", "C4", "G4"]) => {
     let pitches = getProceduralPitches(prevPitches);
-    soundChord(pitches);
+    if (pitches) soundChord(pitches);
     let pitchset = extractPitchset(pitches);
 
     return pitchset;

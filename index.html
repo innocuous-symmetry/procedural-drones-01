@@ -113,12 +113,14 @@
                 <button id="reset-lfos">Reset LFO values to default</button>
                 <button id="rand-chord">Full random chord</button>
                 <button id="eval-chord">Evaluated chord</button>
+                <button id="next-chord">Get next chord (console)</button>
             </div>
         </main>
 
         <!-- Tone.js library -->
         <script type="module" src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
         <!-- internal scripts -->
+        <script type="module" src="./src/pitch_generation/sonorityList.js"></script>
         <script type="module" src="./src/styleUtils.js"></script>
         <script type="module" src="./src/inputHandling.js"></script>
         <script type="module" src="./src/harmonyUtil.js"></script>
