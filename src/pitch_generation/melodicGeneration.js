@@ -36,27 +36,40 @@ export const melodicGeneration = (prevPitches) => {
     let pitchNumTwo = musicalPitches.indexOf(pitchNameTwo);
 
     let interval = pitchNumTwo - pitchNumOne;
-    direction = interval > 0;
 
-    if (octaveOne === octaveTwo) console.log("OCTAVE: same");
+    console.log(prevSoprano, newSoprano);
+    console.log(pitchNumOne, pitchNumTwo);
 
-    if (octaveOne > octaveTwo) {
-        console.log('OCTAVE: first is higher');
-        if ((pitchNumTwo + 3) % 12 <= (pitchNumOne + 3) % 12) {
-            console.log('CAUGHT OCTAVE SHIFT');
-            console.log(interval);
-            interval = Math.abs(interval) * -1;
+    if (octaveOne === octaveTwo) {
+        console.log("OCTAVE: same");
+        if (pitchNumOne > pitchNumTwo || pitchNumTwo === 0) {
+            console.log("WRAP");
+            interval += 12;
         }
-        console.log(interval);
-
-        // interval = 12 - interval;
-    } else if (octaveOne < octaveTwo) {
-        console.log('OCTAVE: second is higher');
-        console.log(`pre shift: ${interval}`);
-        if (interval < pitchNumOne) (interval = 12 + Math.abs(interval));
-        console.log(`post shift: ${interval}`);
     }
     
+    // accounts for when the octave marker is different between pitches
+    if (octaveOne > octaveTwo) {
+        console.log('OCTAVE: first is higher');
+        if (pitchNumOne > pitchNumTwo) {
+            console.log("WRAP");
+            interval = Math.abs(interval) + 12;
+        }
+    } else if (octaveOne < octaveTwo) {
+        console.log('OCTAVE: second is higher');
+
+        if (pitchNumTwo === 0) {
+            console.log("Edge case: pitch two = 0");
+            interval = Math.abs(interval - 12) + 12;
+        }
+
+        if (pitchNumOne > pitchNumTwo) {
+            console.log("WRAP");
+            interval = 12 - Math.abs(interval);
+        }
+    }
+    
+    direction = interval > 0;
     // this boolean evaluates first, but may be changed to false pending the following conditional flow
     isMelodic = preferredMotion.includes(Math.abs(interval));
 
@@ -64,9 +77,6 @@ export const melodicGeneration = (prevPitches) => {
     if ((pitchNameOne === 'F#' || pitchNameTwo === 'Bb') && (pitchNameOne === 'Bb' || pitchNameTwo === 'F#')) {
         isMelodic = false;
     }
-
-    console.log(prevSoprano, newSoprano);
-    console.log(pitchNumOne, pitchNumTwo);
 
     console.log(`interval: ${interval}`);
     console.log(`direction: ${direction ? 'ascending' : 'descending'}`);
