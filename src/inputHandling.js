@@ -1,6 +1,6 @@
 import { audioTest } from '../app.js';
 import { fullRandomChord, evaluatedChord } from './audioUtil.js';
-import { sonorities, getNextSonority } from './pitch_generation/sonorityList.js';
+import { getNextSonority } from './pitch_generation/sonorityList.js';
 
 // slider variables referring to DOM
 export const sopranoVol = document.getElementById('soprano-vol');

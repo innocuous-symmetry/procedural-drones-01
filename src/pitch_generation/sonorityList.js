@@ -8,6 +8,10 @@ export const sonorityList = (result) => {
 }
 
 export const getNextSonority = () => {
-    console.log(sonorities);
-    return sonorities;
+    if (!sonorities.length) return;
+
+    let shifted = sonorities.shift();
+    console.log(shifted);
+
+    return shifted;
 }
