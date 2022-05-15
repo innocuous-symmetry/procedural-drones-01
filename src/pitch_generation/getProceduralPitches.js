@@ -59,7 +59,7 @@ export const getProceduralPitches = () => {
         console.log(`call count: ${callCount}`);
         callCount = 0;
         console.log(pitches);
-        melodicGeneration(pitches);
+        let next = melodicGeneration(pitches);
         return pitches;
     }
 }

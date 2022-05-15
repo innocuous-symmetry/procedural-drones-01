@@ -6,18 +6,11 @@ import { musicalPitches, pitchsets } from '../harmonyUtil.js';
 // reads the pitch of the previous sonority and determines appropriate melodic movement for the soprano
 // returns a boolean which triggers a recursive call if the interval received is out of expected values
 
-let callCount = 0;
-
 export const melodicGeneration = (prevPitches) => {
-    console.clear();
-
-    callCount++;
-
     // direction: boolean; true refers to ascending motion; false refers to descending motion
     let direction;
     let isMelodic = true;
     const preferredMotion = [0,1,2,3,4,12];
-    const sopranoLength = pitchsets[3].length;
 
     let newPitches = getRandomPitches();
 
@@ -37,19 +30,13 @@ export const melodicGeneration = (prevPitches) => {
 
     let interval = pitchNumOne - pitchNumTwo;
 
-    console.log(prevSoprano, newSoprano);
-    console.log(pitchNumOne, pitchNumTwo);
-
     // when the octave number is the same
     if (octaveOne === octaveTwo) {
-        console.log("OCTAVE: same");
-
         if (pitchNumOne === pitchNumTwo) {
             interval = 0;
         } else if (pitchNumTwo === 0) {
             interval = 12 - pitchNumOne;
         } else if (pitchNumOne > pitchNumTwo) {
-            console.log("WRAP");
             interval = pitchNumTwo - pitchNumOne;
         } else if (pitchNumOne < pitchNumTwo) {
             interval *= -1;
@@ -58,7 +45,6 @@ export const melodicGeneration = (prevPitches) => {
     
     // when the first octave number is higher
     if (octaveOne > octaveTwo) {
-        console.log('OCTAVE: first is higher');
         if (pitchNumOne === pitchNumTwo) {
             interval = 0;
         } else if (pitchNumTwo === 0) {
@@ -66,32 +52,24 @@ export const melodicGeneration = (prevPitches) => {
         } else if (pitchNumOne > pitchNumTwo) {
             const wrapperCheckOne = (pitchNumOne + 9) % 12;
             const wrapperCheckTwo = (pitchNumTwo + 9) % 12;
-            
-            console.log("---------------");
-            console.log("PROBLEMS HERE");
-            console.log(`interval: ${interval}`);
-            console.log(`adjusted pitch idx of first pitch: ${wrapperCheckOne}`);
-            console.log(`adjusted pitch idx of second pitch: ${wrapperCheckTwo}`);
-            console.log("---------------");
 
-            interval = pitchNumTwo - pitchNumOne - 12;
+            if (interval !== (wrapperCheckOne - wrapperCheckTwo)) {
+                interval *= -1;
+            } else {
+                interval = pitchNumTwo - pitchNumOne - 12;
+            }
         } else if (pitchNumOne < pitchNumTwo) {
-            console.log("caught");
             interval = (interval + 12) * -1;
         } else {
             console.log("NO CONDITION APPLIES");
         }
     // when the second octave number is higher
     } else if (octaveOne < octaveTwo) {
-        console.log('OCTAVE: second is higher');
-
         if (pitchNumOne > pitchNumTwo) {
-            console.log("WRAP");
             interval = 12 - Math.abs(interval);
         } else if (pitchNumOne < pitchNumTwo) {
             interval *= -1;
         } else if (pitchNumTwo === 0) {
-            console.log("Edge case: pitch two = 0");
             interval = (12 - pitchNumOne) + 12;
         }
     }
@@ -105,10 +83,5 @@ export const melodicGeneration = (prevPitches) => {
         isMelodic = false;
     }
 
-    console.log(`interval: ${interval}`);
-    console.log(`direction: ${direction ? 'ascending' : 'descending'}`);
-    console.log(`isMelodic: ${isMelodic}`);
-    console.log(`melody call count: ${callCount}`);
-
-    callCount = 0;
+    return isMelodic;
 }
