@@ -1,5 +1,5 @@
 import { getRandomPitches } from '../pitch_generation/getRandomPitches.js';
-import { extractPitchset } from "../data_conversions/extractPitchset.js";
+import { extractPitchset } from "../dataConversions.js";
 import { findVector } from "./findVector.js";
 
 export const evaluateVector = (vector) => {

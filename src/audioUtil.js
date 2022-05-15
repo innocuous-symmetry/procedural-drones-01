@@ -1,7 +1,7 @@
 import { soundChord } from "../app.js";
+import { extractPitchset } from "./dataConversions.js";
 import { getRandomPitches } from "./pitch_generation/getRandomPitches.js";
 import { getProceduralPitches } from "./pitch_generation/getProceduralPitches.js";
-import { extractPitchset } from "./data_conversions/extractPitchset.js";
 
 // initial test: generate a single, random chord
 export const fullRandomChord = () => {

@@ -1,5 +1,9 @@
-import { musicalPitches } from '../harmonyUtil.js';
-import { extractPitchName } from './extractPitchName.js';
+import { musicalPitches } from './harmonyUtil.js';
+
+// inline functions for converting between data types
+export const extractPitchName = (tonePitchName) => tonePitchName.match(/[A-Gb#]/g).join('');
+export const extractOctave = (pitchName) => pitchName.match(/[0-9]/g).join('');
+export const getRandomIndex = (voice) => Math.floor(Math.random() * 100) % voice.length;
 
 // converts pitches in Tone.js string format to base-12 number pitchsets
 export const extractPitchset = (pitches) => {

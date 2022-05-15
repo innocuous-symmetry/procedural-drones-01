@@ -1,6 +1,5 @@
 import { getRandomPitches } from './getRandomPitches.js';
-import { extractPitchName } from '../data_conversions/extractPitchName.js';
-import { extractOctave } from '../data_conversions/extractOctave.js';
+import { extractOctave, extractPitchName } from '../dataConversions.js';
 import { musicalPitches, pitchsets } from '../harmonyUtil.js';
 
 // reads the pitch of the previous sonority and determines appropriate melodic movement for the soprano

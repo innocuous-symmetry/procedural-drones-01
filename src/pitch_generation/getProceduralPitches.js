@@ -1,6 +1,5 @@
 import { pitchsets, musicalPitches } from "../harmonyUtil.js";
-import { extractPitchName } from "../data_conversions/extractPitchName.js";
-import { getRandomIndex } from "./getRandomPitches.js";
+import { extractPitchName, getRandomIndex } from "../dataConversions.js";
 import { melodicGeneration } from './melodicGeneration.js';
 import { sonorityList } from "./sonorityList.js";
 
