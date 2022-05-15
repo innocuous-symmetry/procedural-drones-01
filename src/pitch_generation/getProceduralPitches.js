@@ -28,10 +28,6 @@ export const getProceduralPitches = () => {
 
     let pitchNames = pitches.map(x => extractPitchName(x));
     let pitchNums = pitchNames.map(x => musicalPitches.indexOf(x));
-    
-    // console.log(pitches);
-    // console.log(pitchNames);
-    // console.log(pitchNums);
 
     // this value is assigned true only if the loop below finds an interval value
     // which corresponds to a dissonance, 1 or 6

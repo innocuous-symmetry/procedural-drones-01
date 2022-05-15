@@ -24,7 +24,6 @@ showMore.onclick = () => {
 }
 
 startButton.onclick = async () => {
-    // @ts-expect-error - namespace again, failed import from Tone
     await Tone.start()
     .then(() => {
         appReady = true;

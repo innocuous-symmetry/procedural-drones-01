@@ -35,37 +35,64 @@ export const melodicGeneration = (prevPitches) => {
     let pitchNumOne = musicalPitches.indexOf(pitchNameOne);
     let pitchNumTwo = musicalPitches.indexOf(pitchNameTwo);
 
-    let interval = pitchNumTwo - pitchNumOne;
+    let interval = pitchNumOne - pitchNumTwo;
 
     console.log(prevSoprano, newSoprano);
     console.log(pitchNumOne, pitchNumTwo);
 
+    // when the octave number is the same
     if (octaveOne === octaveTwo) {
         console.log("OCTAVE: same");
-        if (pitchNumOne > pitchNumTwo || pitchNumTwo === 0) {
+
+        if (pitchNumOne === pitchNumTwo) {
+            interval = 0;
+        } else if (pitchNumTwo === 0) {
+            interval = 12 - pitchNumOne;
+        } else if (pitchNumOne > pitchNumTwo) {
             console.log("WRAP");
-            interval += 12;
+            interval = pitchNumTwo - pitchNumOne;
+        } else if (pitchNumOne < pitchNumTwo) {
+            interval *= -1;
         }
     }
     
-    // accounts for when the octave marker is different between pitches
+    // when the first octave number is higher
     if (octaveOne > octaveTwo) {
         console.log('OCTAVE: first is higher');
-        if (pitchNumOne > pitchNumTwo) {
-            console.log("WRAP");
-            interval = Math.abs(interval) + 12;
+        if (pitchNumOne === pitchNumTwo) {
+            interval = 0;
+        } else if (pitchNumTwo === 0) {
+            interval = pitchNumOne * -1;
+        } else if (pitchNumOne > pitchNumTwo) {
+            const wrapperCheckOne = (pitchNumOne + 9) % 12;
+            const wrapperCheckTwo = (pitchNumTwo + 9) % 12;
+            
+            console.log("---------------");
+            console.log("PROBLEMS HERE");
+            console.log(`interval: ${interval}`);
+            console.log(`adjusted pitch idx of first pitch: ${wrapperCheckOne}`);
+            console.log(`adjusted pitch idx of second pitch: ${wrapperCheckTwo}`);
+            console.log("---------------");
+
+            interval = pitchNumTwo - pitchNumOne - 12;
+        } else if (pitchNumOne < pitchNumTwo) {
+            console.log("caught");
+            interval = (interval + 12) * -1;
+        } else {
+            console.log("NO CONDITION APPLIES");
         }
+    // when the second octave number is higher
     } else if (octaveOne < octaveTwo) {
         console.log('OCTAVE: second is higher');
-
-        if (pitchNumTwo === 0) {
-            console.log("Edge case: pitch two = 0");
-            interval = Math.abs(interval - 12) + 12;
-        }
 
         if (pitchNumOne > pitchNumTwo) {
             console.log("WRAP");
             interval = 12 - Math.abs(interval);
+        } else if (pitchNumOne < pitchNumTwo) {
+            interval *= -1;
+        } else if (pitchNumTwo === 0) {
+            console.log("Edge case: pitch two = 0");
+            interval = (12 - pitchNumOne) + 12;
         }
     }
     

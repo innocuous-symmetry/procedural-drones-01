@@ -25,8 +25,5 @@ export const getRandomPitches = () => {
             }
         }
     }
-
-    console.log(formattedPitches);
-    console.log(pitches);
     return pitches;
 }
